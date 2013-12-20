@@ -26,6 +26,12 @@ class GoalsController < ApplicationController
 
   def show
     @goal = Goal.find(params[:id])
-    render :show
+    @user = @goal.user
+
+    if @goal.is_private && @user != current_user
+      redirect_to goals_url
+    else
+      render :show
+    end
   end
 end

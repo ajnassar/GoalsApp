@@ -58,4 +58,6 @@ def make_goal(privacy)
   fill_in "goal_name", :with => "test_goal"
   check 'goal_privacy_checkbox' if privacy
   click_on "Create goal!"
+
+  current_url
 end

@@ -40,5 +40,15 @@ describe "creating a goal" do
       expect(page).to have_content("test_goal")
     end
   end
+
+  describe "test_private_goals" do
+    it "should not be accessible to other users" do
+      private_goal_url = make_goal(true)
+
+      sign_up("other_user")
+      visit private_goal_url
+      expect(page).to have_content("Goals")
+    end
+  end
 end
 
