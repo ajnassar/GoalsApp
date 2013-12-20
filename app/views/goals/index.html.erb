@@ -1,0 +1,16 @@
+<h2>Goals</h2>
+
+<% @users.each do |user| %>
+  <% user_goals = @goals.select{ |goal| goal.user_id == user.id} %>
+  <% next if user_goals.length == 0 %>
+  <h3><%= link_to(user.username, user_url(user)) %> </h3>
+    <ul>
+      <% user_goals.each do |goal| %>
+        <li>
+          <%= link_to(goal.name, user_goal_url(user, goal)) %>
+        </li>
+      <% end %>
+    </ul>
+<% end %>
+
+<%= button_to("Create goal!", new_goal_url, :method => :get)%>

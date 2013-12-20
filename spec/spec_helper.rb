@@ -51,3 +51,11 @@ def sign_in(username)
   fill_in "user_password", with: "password"
   click_button 'Sign in!'
 end
+
+def make_goal(privacy)
+  visit(goals_url)
+  click_on "Create goal!"
+  fill_in "goal_name", :with => "test_goal"
+  check 'goal_privacy_checkbox' if privacy
+  click_on "Create goal!"
+end

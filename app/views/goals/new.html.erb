@@ -1,0 +1,9 @@
+<h2>New goal!</h2>
+
+<form method="POST" action="<%= goals_url %>">
+  <label for="goal_name">Goal</label>
+  <input type="text" id="goal_name" name="goal[name]">
+  <label for="goal_privacy_checkbox">Private?</label>
+  <input type="checkbox" id="goal_privacy_checkbox" name="goal[is_private]">
+  <input type="submit" value="Create goal!">
+</form>

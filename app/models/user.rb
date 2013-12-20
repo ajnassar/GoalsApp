@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   validates :session_token, :username, :password_digest, :presence => true
   validates :username, :uniqueness => true
 
+  has_many :goals
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
 
@@ -35,5 +37,8 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def visible_goals
+    Goal.where("is_private = ? OR user_id = ?", false, self.id)
+  end
 
 end

@@ -1,0 +1,3 @@
+<h2>Goal Page: <%= @goal.name %> </h2>
+
+<%= link_to("Back to #{@goal.user.username}'s page", user_url(params[:user_id]))%>
