@@ -2,13 +2,33 @@
 <html>
 <head>
   <title>GoalsApp</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <% stylesheet_link_tag    "application", :media => "all" %>
+  <% javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <div id="userdetails">
+    <% if current_user %>
+      Welcome, <%= current_user.username %>! <br>
+      <%= button_to "Sign out!", session_url, :method => :delete %>
+    <% else %>
+      You aren't signed in! <br>
+      <%= button_to "Sign in!", new_session_url, :method => :get %>
+      <%= button_to "Create account!", new_user_url, :method => :get %>
+    <% end %>
+  </div>
+
+  <% if flash[:errors] %>
+    <div id="errors">
+      <% flash[:errors].each do |error| %>
+        <div id="error">
+          <%= error %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= yield %>
 
 </body>
 </html>
