@@ -7,4 +7,11 @@ class CheersController < ApplicationController
     @cheer.save
     redirect_to user_goal_url(@goal.user_id, params[:goal_id])
   end
+
+  def destroy
+    @cheer = Cheer.find(params[:id])
+    @goal = @cheer.goal
+    @user = @goal.user
+    redirect_to user_goal_url(@user, @goal)
+  end
 end

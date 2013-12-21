@@ -12,7 +12,8 @@
   <% @cheering_users.each do |user| %>
     <li>
       <% if user == current_user %>
-        You cheered!
+        You cheered! <%= button_to "Delete cheer", goal_cheer_url(@goal,
+              Cheer.find_by_goal_id_and_user_id(@goal.id, user.id)), :method => :delete %>
       <% else %>
         <%= user.username %> cheered!
       <% end %>

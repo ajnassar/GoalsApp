@@ -6,6 +6,6 @@ GoalsApp::Application.routes.draw do
   end
 
   resources :goals, :except => [:show] do
-    resources :cheers, :only => [:create]
+    resources :cheers, :only => [:create, :destroy]
   end
 end

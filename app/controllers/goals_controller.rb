@@ -22,6 +22,7 @@ class GoalsController < ApplicationController
   def index
     @users = User.all
     @goals = current_user.visible_goals
+    @cheers = Cheer.all
   end
 
   def show
