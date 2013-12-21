@@ -31,6 +31,16 @@ class GoalsController < ApplicationController
     if @goal.is_private && @user != current_user
       redirect_to goals_url
     else
+      @cheering_users = User.joins(:cheers)
+                            .where("cheers.goal_id = ?", @goal.id)
+
+      if (current_user != @user &&
+              current_user.cheers.count < 5 &&
+              !@cheering_users.include?(current_user))s
+
+        @cheer_button = true
+      end
+
       render :show
     end
   end

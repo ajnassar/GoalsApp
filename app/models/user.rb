@@ -7,12 +7,10 @@ class User < ActiveRecord::Base
   validates :username, :uniqueness => true
 
   has_many :goals
+  has_many :cheers
 
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
-
-    p "*"*100
-    p user
 
     if user && user.is_password?(password)
       user
