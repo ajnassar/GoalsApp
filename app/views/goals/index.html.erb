@@ -7,7 +7,13 @@
     <ul>
       <% user_goals.each do |goal| %>
         <li>
-          <%= link_to(goal.name, user_goal_url(user, goal)) %>
+          <% unless goal.is_private %>
+            <%= link_to(goal.name, user_goal_url(user, goal)) %>
+          <% else %>
+            <em>
+              <%= link_to(goal.name, user_goal_url(user, goal)) %>
+            </em>
+          <% end %>
         </li>
       <% end %>
     </ul>

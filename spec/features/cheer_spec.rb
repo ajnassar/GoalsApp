@@ -27,11 +27,17 @@ describe "cheering public goal" do
       before(:each) { click_on "Cheer!" }
 
       it "should afterwards display cheer" do
-        expect(page).to have_content("user2 cheered!")
+        expect(page).to have_content("You cheered!")
       end
 
       it "should after cheering not display cheer button anymore" do
         expect(page).to have_no_button("Cheer!")
+      end
+
+      it "should afterwards display cheer to others" do
+        sign_up("user3")
+        visit(@public_goal_url)
+        expect(page).to have_content("user2 cheered!")
       end
     end
   end
@@ -48,7 +54,7 @@ describe "cheer limitations" do
     goals[0...cheer_limit].each do |goal|
       visit(goal)
       click_on "Cheer!"
-      expect(page).to have_content("user2 cheered!")
+      expect(page).to have_content("You cheered!")
     end
 
     visit(goals.last)

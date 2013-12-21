@@ -2,11 +2,15 @@
 <html>
 <head>
   <title>GoalsApp</title>
-  <% stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <% javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <div id="title">
+    <h1><%=link_to "Goal App!", goals_url %></h1>
+  </div>
 
   <div id="userdetails">
     <% if current_user %>
@@ -31,7 +35,10 @@
       <% end %>
     </div>
   <% end %>
-  <%= yield %>
+
+  <div id="main">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
