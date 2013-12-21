@@ -11,6 +11,9 @@
   <div id="userdetails">
     <% if current_user %>
       Welcome, <%= current_user.username %>! <br>
+      You have <%= current_user.cheers_left %> cheers left!
+      <%= link_to("Your goals!", user_url(current_user) )%>
+      <%= link_to("All goals!", goals_url)%>
       <%= button_to "Sign out!", session_url, :method => :delete %>
     <% else %>
       You aren't signed in! <br>

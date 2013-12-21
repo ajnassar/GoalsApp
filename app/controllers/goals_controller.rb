@@ -35,8 +35,8 @@ class GoalsController < ApplicationController
                             .where("cheers.goal_id = ?", @goal.id)
 
       if (current_user != @user &&
-              current_user.cheers.count < 5 &&
-              !@cheering_users.include?(current_user))s
+              current_user.cheers_left > 0 &&
+              !@cheering_users.include?(current_user))
 
         @cheer_button = true
       end

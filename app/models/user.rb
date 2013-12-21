@@ -39,4 +39,7 @@ class User < ActiveRecord::Base
     Goal.where("is_private = ? OR user_id = ?", false, self.id)
   end
 
+  def cheers_left
+    5 - self.cheers.where("created_at > ?", 24.hours.ago).count
+  end
 end
